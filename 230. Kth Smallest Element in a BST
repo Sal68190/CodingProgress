@@ -1,0 +1,15 @@
+   void inorderBST(TreeNode* root, vector<int>&ans, int k){
+    if(root==NULL){
+        return;
+    }
+    inorderBST(root->left,ans,k);
+    ans.push_back(root->val);
+    inorderBST(root->right,ans,k);
+}
+
+//main function
+int kthSmallest(TreeNode* root, int k) {
+    vector<int>ans;
+    inorderBST(root,ans,k);
+    return ans[k-1];        
+}
