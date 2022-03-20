@@ -1,0 +1,20 @@
+vector<vector<string>> groupStrings(vector<string<& strings) {
+      unordered_map<string, vector<string> > m;
+      vector<vector<string< > ret;
+      for (int i = 0; i < strings.size(); i++) {
+         string key = "";
+         for (int j = 1; j < strings[i].size(); j++) {
+            int diff = strings[i][j] - strings[i][j - 1];
+            if (diff < 0)
+            diff += 26;
+            key += "#" + to_string(diff);
+         }
+         m[key].push_back(strings[i]);
+      }
+      unordered_map<string, vector<string< >::iterator it = m.begin();
+      while (it != m.end()) {
+         ret.push_back(it->second);
+         it++;
+      }
+      return ret;
+   }
