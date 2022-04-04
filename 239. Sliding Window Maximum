@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+        // two directional queue is required because  
+        // new number will be inserted from the back of queue to maintain the order of numbers in array
+        // so if a number is out of sliding window it can be removed from front
+        // ** we are inserting the index of number in queue
+        
+        deque<int> dq(k);
+        vector<int> ans;
+        
+        int size = nums.size();
+        for(int i =0;i<size;++i)
+        {
+            // all the numbers alredy traversed number of array which are smaller than the new number of iteration 
+            //remove those number from queue it is of no use
+            while(dq.size() && nums[dq.back()] <= nums[i]) dq.pop_back();
+            
+            // insert the index of the new number in back 
+            dq.push_back(i);
+            
+            //if the number(index) at front is out of sliding window remove that
+            if(dq.front() < i-k+1) dq.pop_front();
+            
+            // start inserting the number when the size is greater or equal to sliding window
+            if(dq.back() >= (k-1)) ans.push_back(nums[dq.front()]);
+        }
+        return ans;  
+    }
+};
