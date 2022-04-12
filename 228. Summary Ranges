@@ -7,7 +7,7 @@ public:
         for (int i = 0; i < size_n;) {
             int start = i, end = i;
             while (end + 1 < size_n && nums[end+1] == nums[end] + 1) end++;  // add end along as its consecutive or inside the range 
-            if (end > start) res.push_back(to_string(nums[start]) + "->" + to_string(nums[end])); // end has to greater than start to be valid
+            if (end > start) res.push_back(to_string(nums[start]) + "->" + to_string(nums[end])); // end has to be greater than start to be valid
             else res.push_back(to_string(nums[start]));   // if start == end or if its only one element
             i = end+1; // cause you have to move on to the next element after adding range to result
         }
