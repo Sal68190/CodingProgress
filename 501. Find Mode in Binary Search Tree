@@ -13,7 +13,7 @@ class Solution {
 public:
     vector<int> findMode(TreeNode* root) {
         if (root == NULL) return {}; 
-        unordered_map<int, int> times;
+        unordered_map<int, int> times; // val, count
         int max = INT_MIN;
         vector<int> answer;
         queue<TreeNode*> q; 
