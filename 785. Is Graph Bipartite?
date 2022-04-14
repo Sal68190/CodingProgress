@@ -1,0 +1,42 @@
+class Solution {
+public:
+//     using graph coloring
+    bool bfs(vector<vector<int>>& graph, int start, vector<bool>& vis, vector<int>& color) {
+        vis[start] = true;
+//         marking the first node as 0;
+        color[start] = 0;
+        queue<int> q;
+        q.push(start);
+        while(!q.empty()) {
+            int node = q.front();
+            q.pop();
+            for(auto it : graph[node]) {
+                if(!vis[it]) {
+                    q.push(it);
+                    vis[it] = true;
+//                     marking all the adjacent nodes and opposite of parent ie node here.
+                    color[it] = !color[node];
+                }
+//                 if the node is already visited
+                else if(it != node) {
+//                     and it is not the parent, then we will match the color.
+                    if(color[it] == color[node]) return false;
+                }
+            }
+        }
+        return true;
+    }
+    bool isBipartite(vector<vector<int>>& graph) {
+        int n = graph.size();
+        vector<bool> vis(n, 0);
+        vector<int> color(n, -1);
+        for(int i=0; i<n; i++) {
+            if(!vis[i]) {
+                if(!bfs(graph, i, vis, color)) {
+                    return false; 
+                }
+            }
+        }
+        return true;
+    }
+};
