@@ -1,0 +1,30 @@
+bool validTree(int n, vector<vector<int>> &edges) {               // number of vertices and vector<vec<int> edges are given (not graph so have to connect the edges)
+
+         unordered_map<int, unordered_set<int>> nodeToEdge; //graph
+         for (int i = 0; i <= n - 1; i++) {
+             nodeToEdge[i];
+         }
+         for (int i = 0; i < edges.size(); i++) { //add edges to make undirected graph
+             nodeToEdge[edges[i][0]] .insert(edges[i][1]);
+             nodeToEdge[edges[i][1]].insert(edges[i][0]);
+         }
+         queue<int> q;
+         unordered_set<int> visited;
+         q.push(0);
+         visited.insert(0);
+         int count = 0;
+         while (!q.empty()) {
+             int first = q.front();  
+             q.pop();
+             count++;
+             for (auto it = nodeToEdge[first].begin(); it != nodeToEdge[first].end(); it++) { // iterator for whole graph
+                 if (visited.count(*it) != 0) {
+                     continue;
+                 }
+                 q.push(*it);   //push it pointer
+                 visited.insert(*it); //push it pointer
+             }
+        }
+         return count == n && edges.size() == n - 1;     // 
+     }
+ };
