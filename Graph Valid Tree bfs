@@ -1,10 +1,10 @@
 bool validTree(int n, vector<vector<int>> &edges) {               // number of vertices and vector<vec<int> edges are given (not graph so have to connect the edges)
 
-         unordered_map<int, unordered_set<int>> nodeToEdge; //graph
+         unordered_map<int, unordered_set<int>> nodeToEdge; //graph //a set is used so that there are no cycles in a tree
          for (int i = 0; i <= n - 1; i++) {
-             nodeToEdge[i];
+             nodeToEdge[i];  // initializing the size of map/graph for the input n;
          }
-         for (int i = 0; i < edges.size(); i++) { //add edges to make undirected graph
+         for (int i = 0; i < edges.size(); i++) { //add edges to make undirected graph 
              nodeToEdge[edges[i][0]] .insert(edges[i][1]);
              nodeToEdge[edges[i][1]].insert(edges[i][0]);
          }
