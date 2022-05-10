@@ -1,0 +1,45 @@
+class Solution {
+public:
+    bool checkRecord(string s) {
+        
+        // a measure of being late for the class
+        int L_count = 0;
+        // a measure for number of leaves/off taken
+        int A_count = 0;
+        
+        // reading the given record
+        for (const auto& c : s)
+        {
+            // if student was absent
+            if (c == 'A')
+            {
+                // increment the absent count
+                A_count++;
+                
+                // check if he/she has taken two or more leaves
+                // if yes he/she fails to get the reward
+                if (A_count == 2)
+                    return false;
+                
+                // reset the consecutive late count
+                L_count = 0;
+            }
+            // if student was late
+            else if (c == 'L')
+            {
+                // increment the late count
+                L_count++;
+                // check if he/she is being late for 3 consecutive days
+                // if yes, he/she fails to get the reward
+                if (L_count == 3)
+                    return false;
+            }
+            // reset the consecutive late count
+            else
+                L_count = 0;
+        }
+        
+        // student gets reward for not being late or absent as per the criteria
+        return true;
+    }
+};
